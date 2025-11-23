@@ -1,27 +1,36 @@
  import React, { useState } from "react"
  import Header from "./components/Header"
+
 function App() {
-const [clicks, setClicks] = useState(0)
-function handleClick() {
- setClicks(clicks + 1)
- }
+
+  const[items, seItems] = useState([
+    {id: 1,name:"Urea 50kg"},
+    {id: 2,name:"DAP 50kg"},
+    {id: 3,name:"Potash 50kg"}
+    
+  ])
+  const hasItems = items.length > 0
+
 return (
  <div style={{ padding: "16px", fontFamily: "Arial", maxWidth: "420px", margin: "0 auto" }}>
  <Header title="Warehouse Stock Handling App" />
 
-  <p style={{ fontSize: "14px", lineHeight: "20px" }}>
-    Today we learned how state and events work in React.
-  </p>
+ 
+  <h3>Available Items</h3>
 
-  <div style={{ marginTop: "20px", padding: "12px", border: "1px solid #ccc", borderRadius: "6px" }}>
-    <p>You clicked: {clicks}</p>
-    <button onClick={handleClick} style={{ padding: "8px", marginTop: "8px" }}>
-      Click Me
-    </button>
+
+{
+  hasItems && (
+     <ul>
+    {items.map(item=>(
+     <li key= {item.id}>{items.name}</li> 
+    ))}
+    </ul>
+  )
+}
+    {!hasItems && <p>No items available</p>} 
   </div>
 
-</div>
-
-)
+);
  }
-export default App
+export default App;
